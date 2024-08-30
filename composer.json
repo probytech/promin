@@ -1,0 +1,21 @@
+{
+    "name": "probytech/promin",
+    "description": "Headless CMS Promin By Probytech",
+    "type": "library",
+    "require": {
+        "maatwebsite/excel": "^3.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Probytech\\Promin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Probytech",
+            "email": "hello@probytech.com.ua"
+        }
+    ],
+    "minimum-stability": "stable"
+}
