@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.arrow-up-right .arrow-up-right-first {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: transform 0.3s ease 0.2s,opacity 0.3s ease 0.2s;
+}
+
+.arrow-up-right .arrow-up-right-second {
+    opacity: 0;
+    transform: translate(-100%, 0);
+    transition: transform 0.3s,opacity 0.3s;
+}
+
+.arrow-up-right:hover .arrow-up-right-first,
+.button:hover .arrow-up-right-first,
+.group:hover .arrow-up-right-first {
+    opacity: 0;
+    transform: translate(100%, -100%);
+    transition: transform 0.3s,opacity 0.3s;
+}
+
+.arrow-up-right:hover .arrow-up-right-second,
+.button:hover .arrow-up-right-second,
+.group:hover .arrow-up-right-second {
+    opacity: 1;
+    transform: translate(0, -100%);
+    transition: transform 0.3s ease 0.2s,opacity 0.3s ea
+}

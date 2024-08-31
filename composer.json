@@ -3,7 +3,9 @@
     "description": "Headless CMS Promin By Probytech",
     "type": "library",
     "require": {
-        "maatwebsite/excel": "^3.1"
+        "maatwebsite/excel": "^3.1",
+        "inertiajs/inertia-laravel": "^1.3",
+        "tightenco/ziggy": "^2.3"
     },
     "license": "MIT",
     "autoload": {
