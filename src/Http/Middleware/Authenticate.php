@@ -18,9 +18,9 @@ class Authenticate
 	 */
 	public function handle($request, Closure $next, $guard = null)
 	{
-        if (!Gate::check('viewPromin')) {
+		if (!Gate::check('viewPromin')) {
 			return redirect(ProminServiceProvider::LOGIN);
-        }
+		}
 
 		return $next($request);
 	}

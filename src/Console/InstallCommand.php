@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Probytech\Promin\Models\Role;
 use Artisan;
 
-class InstallCommand extends Command {
+class InstallCommand extends Command
+{
 
 	/**
 	 * The name and signature of the console command.
@@ -27,36 +28,38 @@ class InstallCommand extends Command {
 	/**
 	 * Create a new command instance.
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		parent::__construct();
 	}
 
 	/**
 	 * Execute the console command.
 	 */
-	public function handle() {
+	public function handle()
+	{
 
-        $this->info('Running migrations.');
+		$this->info('Running migrations.');
 
 		Artisan::call('migrate');
 
-        $this->info('Migrated successfully.');
-		
+		$this->info('Migrated successfully.');
+
 		$this->createSuperAdmin();
 	}
 
-    /**
+	/**
 	 * Create super admin with role
-     * TODO: Make role_id fillable and use User model
+	 * TODO: Make role_id fillable and use User model
 	 */
 	private function createSuperAdmin()
-    {
+	{
 		DB::table('users')
-        ->insert([
-			'name'		=> $this->ask('Administrator name'),
-			'email'		=> $this->ask('Administrator email'),
-			'password'	=> Hash::make($this->secret('Administrator password')),
-			'role_id'	=> Role::SUPERADMIN,
-		]);
+			->insert([
+				'name'		=> $this->ask('Administrator name'),
+				'email'		=> $this->ask('Administrator email'),
+				'password'	=> Hash::make($this->secret('Administrator password')),
+				'role_id'	=> Role::SUPERADMIN,
+			]);
 	}
 }

@@ -2,7 +2,6 @@
 
 namespace Probytech\Promin\Providers;
 
-use Illuminate\Auth\Access\Response;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
@@ -14,84 +13,84 @@ use Probytech\Promin\Models\Role;
 
 class ProminServiceProvider extends ServiceProvider
 {
-    /**
-     * The path to Promin "home" route.
-     *
-     * Typically, users are redirected here after authentication.
-     *
-     * @var string
-     */
-    public const HOME = '/promin';
+	/**
+	 * The path to Promin "home" route.
+	 *
+	 * Typically, users are redirected here after authentication.
+	 *
+	 * @var string
+	 */
+	public const HOME = '/promin';
 
-    /**
-     * The path to Promin "login" route.
-     *
-     * Typically, users are redirected here after failed authentication.
-     *
-     * @var string
-     */
-    public const LOGIN = '/promin/login';
+	/**
+	 * The path to Promin "login" route.
+	 *
+	 * Typically, users are redirected here after failed authentication.
+	 *
+	 * @var string
+	 */
+	public const LOGIN = '/promin/login';
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'promin');
-        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-        $this->registerCommands();
-        
-        $this->gate();
-        $this->middlewares();
-    }
+	/**
+	 * Bootstrap services.
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		$this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
+		$this->loadViewsFrom(__DIR__ . '/../../resources/views', 'promin');
+		$this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+		$this->registerCommands();
 
-    /**
-     * Register the Promin Artisan commands.
-     *
-     * @return void
-     */
-    protected function registerCommands()
-    {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                InstallCommand::class,
-            ]);
-        }
-    }
+		$this->gate();
+		$this->middlewares();
+	}
 
-    /**
-     * Register the Promin gate.
-     *
-     * This gate determines who can access Promin in non-local environments.
-     *
-     * @return void
-     */
-    protected function gate()
-    {
-        Gate::define('viewPromin', function ($user) {
-            return in_array($user->role_id, [
-                Role::SUPERADMIN,
-                Role::ADMIN,
-            ]);
-        });
-    }
+	/**
+	 * Register the Promin Artisan commands.
+	 *
+	 * @return void
+	 */
+	protected function registerCommands()
+	{
+		if ($this->app->runningInConsole()) {
+			$this->commands([
+				InstallCommand::class,
+			]);
+		}
+	}
 
-    protected function middlewares()
-    {
-        Route::middlewareGroup('promin', [
-            'web',
-            HandleInertiaRequests::class,
-        ]);
+	/**
+	 * Register the Promin gate.
+	 *
+	 * This gate determines who can access Promin in non-local environments.
+	 *
+	 * @return void
+	 */
+	protected function gate()
+	{
+		Gate::define('viewPromin', function ($user) {
+			return in_array($user->role_id, [
+				Role::SUPERADMIN,
+				Role::ADMIN,
+			]);
+		});
+	}
 
-        Route::middlewareGroup('promin.guest', [
-            RedirectIfAuthenticated::class,
-        ]);
+	protected function middlewares()
+	{
+		Route::middlewareGroup('promin', [
+			'web',
+			HandleInertiaRequests::class,
+		]);
 
-        Route::middlewareGroup('promin.admin', [
-            Authenticate::class,
-        ]);
-    }
+		Route::middlewareGroup('promin.guest', [
+			RedirectIfAuthenticated::class,
+		]);
+
+		Route::middlewareGroup('promin.admin', [
+			Authenticate::class,
+		]);
+	}
 }

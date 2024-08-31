@@ -11,39 +11,39 @@ use Probytech\Promin\Providers\ProminServiceProvider;
 
 class LoginController
 {
-    /**
-     * Show login page for Promin.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function show()
-    {
-        return Inertia::render('Login', []);
-    }
+	/**
+	 * Show login page for Promin.
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function show()
+	{
+		return Inertia::render('Login', []);
+	}
 
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
+	/**
+	 * Handle an incoming authentication request.
+	 */
+	public function store(LoginRequest $request): RedirectResponse
+	{
+		$request->authenticate();
 
-        $request->session()->regenerate();
+		$request->session()->regenerate();
 
-        return redirect()->intended(ProminServiceProvider::HOME);
-    }
+		return redirect()->intended(ProminServiceProvider::HOME);
+	}
 
-    /**
-     * Destroy an authenticated session.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        Auth::logout();
+	/**
+	 * Destroy an authenticated session.
+	 */
+	public function destroy(Request $request): RedirectResponse
+	{
+		Auth::logout();
 
-        $request->session()->invalidate();
+		$request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+		$request->session()->regenerateToken();
 
-        return redirect(ProminServiceProvider::LOGIN);
-    }
+		return redirect(ProminServiceProvider::LOGIN);
+	}
 }
