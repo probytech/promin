@@ -2,6 +2,7 @@
 
 namespace Probytech\Promin\Providers;
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +11,7 @@ use Probytech\Promin\Http\Middleware\Authenticate;
 use Probytech\Promin\Http\Middleware\HandleInertiaRequests;
 use Probytech\Promin\Http\Middleware\RedirectIfAuthenticated;
 use Probytech\Promin\Models\Role;
+use Probytech\Promin\Services\CustomLengthAwarePaginator;
 
 class ProminServiceProvider extends ServiceProvider
 {
@@ -45,6 +47,8 @@ class ProminServiceProvider extends ServiceProvider
 
 		$this->gate();
 		$this->middlewares();
+
+		$this->app->bind(LengthAwarePaginator::class, CustomLengthAwarePaginator::class);
 	}
 
 	/**

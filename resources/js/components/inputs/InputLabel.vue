@@ -1,14 +1,7 @@
-<script setup>
-defineProps({
-	value: {
-		type: String,
-	},
-});
-</script>
+<script setup></script>
 
 <template>
 	<label class="block text-extra text-black">
-		<span v-if="value">{{ value }}</span>
-		<span v-else><slot /></span>
+		<slot />
 	</label>
 </template>

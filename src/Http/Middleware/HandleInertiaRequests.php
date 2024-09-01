@@ -3,7 +3,10 @@
 namespace Probytech\Promin\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
+use Probytech\Promin\Models\Role;
+use Probytech\Promin\Services\MenuService;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -39,6 +42,13 @@ class HandleInertiaRequests extends Middleware
 	 */
 	public function share(Request $request)
 	{
-		return array_merge(parent::share($request), []);
+		return array_merge(parent::share($request), [
+			'app'	=> [
+				'name'	=> config('app.name'),
+				'menu'	=> (new MenuService())->getMenu(),
+			],
+			'user'	=> Auth::user(),
+			'isSuperAdmin' => Auth::user()?->role_id == Role::SUPERADMIN,
+		]);
 	}
 }

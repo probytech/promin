@@ -2,7 +2,7 @@
 import Checkbox from "@/components/inputs/Checkbox.vue";
 import AuthLayout from "@/layouts/AuthLayout.vue";
 import InputError from "@/components/inputs/InputError.vue";
-import PrimaryButton from "@/components/buttons/PrimaryButton.vue";
+import Button from "@/components/buttons/Button.vue";
 import TextInput from "@/components/inputs/TextInput.vue";
 import { Head, useForm } from "@inertiajs/vue3";
 
@@ -88,14 +88,15 @@ const submit = () => {
 				</label>
 			</div>
 
-			<PrimaryButton
+			<Button
+				variant="primary"
 				type="submit"
 				class="w-full mt-6"
 				:class="{ 'opacity-25': form.processing }"
 				:disabled="form.processing"
 			>
 				Log in
-			</PrimaryButton>
+			</Button>
 		</form>
 	</AuthLayout>
 </template>

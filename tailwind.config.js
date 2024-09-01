@@ -12,7 +12,7 @@ export default {
 			black: "#0D0D0D",
 			white: "#FFFFFF",
 			primary: "#1467E5",
-			"light-primary": "#1467e533",
+			"light-primary": "#1467e522",
 			hover: "#10408A",
 			background: "#141414",
 			stroke: "#D2D2D2",

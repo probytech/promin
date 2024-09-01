@@ -10,12 +10,19 @@ const input = ref(null);
 
 defineProps({
 	type: { type: String },
-	id: { type: String },
+	id: {
+		type: String,
+		default: "text",
+	},
 	required: { type: Boolean },
 	autofocus: { type: Boolean },
 	autocomplete: { type: String },
 	placeholder: { type: String },
 	border: {
+		type: Boolean,
+		default: false,
+	},
+	readonly: {
 		type: Boolean,
 		default: false,
 	},
@@ -32,9 +39,9 @@ defineExpose({ focus: () => input.value.focus() });
 </script>
 
 <template>
-	<div class="relative">
+	<div class="relative border-0 !border-b border-stroke">
 		<input
-			class="focus:ring-0 px-3 py-2.5 text-button w-full border-0 !border-b border-stroke outline-none"
+			class="focus:ring-0 px-3 py-2.5 text-button w-full border-none outline-none"
 			v-model="model"
 			:type="showPassword ? 'text' : type"
 			ref="input"
@@ -43,6 +50,8 @@ defineExpose({ focus: () => input.value.focus() });
 			:required="required"
 			:autofocus="autofocus"
 			:autocomplete="autocomplete"
+			:readonly="readonly"
+			:class="{ 'bg-light-bg': readonly }"
 		/>
 		<svg
 			v-if="type == 'password' && !showPassword"

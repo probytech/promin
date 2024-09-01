@@ -22,6 +22,6 @@ const selectOption = (event) => {
 		type="checkbox"
 		@click="(event) => selectOption(event)"
 		:checked="model"
-		class="rounded focus:ring-0 focus:ring-offset-0 text-primary border border-stroke w-5 h-5 duration-300"
+		class="rounded focus:ring-0 focus:ring-offset-0 text-primary border border-stroke w-5 h-5 duration-300 cursor-pointer"
 	/>
 </template>
