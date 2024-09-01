@@ -63,9 +63,7 @@ import CollectionsIcon from "../icons/CollectionsIcon.vue";
 						v-for="dropdownItem in $page.props.app.menu"
 					>
 						<Link
-							:href="
-								route('promin.collections.index', menuItem.table_name)
-							"
+							:href="route('promin.collections.index', menuItem.table_name)"
 							class="text-lg text-white hover:text-primary flex items-center duration-300"
 							v-for="menuItem in dropdownItem"
 						>

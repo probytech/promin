@@ -24,7 +24,6 @@ const emit = defineEmits(["close"]);
 
 <template>
 	<Modal :show="show" :closeable="true" @close="emit('close')">
-		{{ field }}
 		<div class="text-2xl uppercase font-bold mb-6">
 			<span v-if="field">
 				Edit field <span class="text-primary">{{ field.title }}</span>
