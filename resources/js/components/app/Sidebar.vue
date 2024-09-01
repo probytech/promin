@@ -1,6 +1,7 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import DashboardIcon from "../icons/DashboardIcon.vue";
+import MediaIcon from "../icons/MediaIcon.vue";
 import CollectionsIcon from "../icons/CollectionsIcon.vue";
 </script>
 
@@ -40,6 +41,14 @@ import CollectionsIcon from "../icons/CollectionsIcon.vue";
 			>
 				<DashboardIcon class="w-6 h-6 mr-3" />
 				Dashboard
+			</Link>
+
+			<Link
+				:href="route('promin.media')"
+				class="text-lg text-white hover:text-primary flex items-center duration-300"
+			>
+				<MediaIcon class="w-6 h-6 mr-3" />
+				Media Library
 			</Link>
 
 			<div v-if="$page.props.isSuperAdmin">

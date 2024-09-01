@@ -5,6 +5,7 @@ use Probytech\Promin\Http\Controllers\Auth\LoginController;
 use Probytech\Promin\Http\Controllers\Pages\Builder\CollectionController;
 use Probytech\Promin\Http\Controllers\Pages\DashboardController;
 use Probytech\Promin\Http\Controllers\Pages\IndexController;
+use Probytech\Promin\Http\Controllers\Pages\MediaController;
 
 Route::middleware('promin')
 	->as('promin.')
@@ -20,6 +21,7 @@ Route::middleware('promin')
 		Route::middleware('promin.admin')->group(function () {
 
 			Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
+			Route::get('/media', [MediaController::class, 'show'])->name('media');
 
 			Route::get('builder/collections', [CollectionController::class, 'index'])->name('builder.collections');
 			Route::get('builder/collections/create', [CollectionController::class, 'create'])->name('builder.collections.create');
